@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import duckdbcondaecho
+import duckdb
 
 data = {"a": [1, 2, 3], "b": [4, 5, 6]}
 df = pd.DataFrame(data)
