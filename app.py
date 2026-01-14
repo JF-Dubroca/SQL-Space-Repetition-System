@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import duckdb
 
-st.write('SQL Space Repetition System Practice ')
+st.write('SQL Space Repetition System')
 
 with st.sidebar:
     option = st.selectbox(
