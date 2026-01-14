@@ -24,4 +24,4 @@ with tab1:
     sql_query = st.text_area(label="Entrez votre input")
     result = duckdb.query(sql_query).df()
     st.write(f'Votre requête: {sql_query}')
-    st.dataframe(result)
+    st.dataframe(result)conda
