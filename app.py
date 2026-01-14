@@ -27,6 +27,8 @@ CROSS JOIN food_items
 
 solution = duckdb.sql(answer).df()
 
+st.write('SQL Space Repetition System Practice ')
+
 with st.sidebar:
     option = st.selectbox(
         'What would you like to review?',
