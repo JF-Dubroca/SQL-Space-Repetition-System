@@ -1,26 +1,50 @@
 import streamlit as st
 import pandas as pd
 import duckdb
+import io
 
+csv = '''
+beverage, price
+orange juice, 2.5
+Expresso, 2
+Tea, 3
+'''
+beverages = pd.read_csv(io.StringIO(csv))
 
-st.write('SQL Space Repetition System')
+csv2 = '''
+food_items, food_price
+cookie, 3.5
+chocolatine, 2
+muffin, 3
+'''
 
-option = st.selectbox(
-    'What would you like to review?',
-    ['Joins', 'Group By', 'Windows Functions'],
-    index = None,
-    placeholder='Select à theme',
-)
+food_items = pd.read_csv(io.StringIO(csv2))
 
-st.write('You selected:', option)
+answer = """
+SELECT * FROM beverages
+CROSS JOIN food_items
+"""
 
+solution = duckdb.sql(answer).df()
 
-data = {"a": [1, 2, 3], "b": [4, 5, 6]}
-df = pd.DataFrame(data)
+st.header('Entrez votre code')
+query = st.text_area(label="Votre code SQL ici", key='user_input')
 
-(tab1,) = st.tabs(["table"])
-with tab1:
-    sql_query = st.text_area(label="Entrez votre input")
-    result = duckdb.query(sql_query).df()
-    st.write(f'Votre requête: {sql_query}')
+if query:
+    result = duckdb.sql(query).df()
     st.dataframe(result)
+
+tab2, tab3 = st.tabs(['Table', 'Solution'])
+
+with tab2:
+    st.write('Table: beverages')
+    st.dataframe(beverages)
+    st.write('Table: food_items')
+    st.dataframe(food_items)
+    st.write('Expected')
+    st.dataframe(solution)
+
+with tab3:
+    st.write(answer)
+
+
