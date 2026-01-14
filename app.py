@@ -5,14 +5,15 @@ import duckdb
 
 st.write('SQL Space Repetition System')
 
-option = st.selectbox(
-    'What would you like to review?',
-    ['Joins', 'Group By', 'Windows Functions'],
-    index = None,
-    placeholder='Select à theme',
-)
+with st.sidebar:
+    option = st.selectbox(
+        'What would you like to review?',
+        ['Joins', 'Group By', 'Windows Functions'],
+        index = None,
+        placeholder='Select à theme',
+    )
 
-st.write('You selected:', option)
+    st.write('You selected:', option)
 
 
 data = {"a": [1, 2, 3], "b": [4, 5, 6]}
