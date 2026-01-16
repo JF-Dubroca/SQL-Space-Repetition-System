@@ -46,6 +46,21 @@ if query:
     result = duckdb.sql(query).df()
     st.dataframe(result)
 
+# Vérification du nombre de ligne et du nombre de colonnes
+nb_solution_lines = solution.shape[0]
+nb_solution_columns = solution.shape[1]
+nb_result_lines = result.shape[0]
+nb_result_columns = result.shape[1]
+
+if nb_result_lines != nb_solution_lines:
+    st.write('Le nombre de lignes est incorrect')
+
+if nb_result_columns != nb_result_columns:
+    st.write('Le nombre de colonnes est incorrest')
+
+if nb_result_columns == nb_solution_columns and nb_result_lines == nb_solution_lines:
+    st.write('Bravo, tu as trouvé la solution')
+
 tab2, tab3 = st.tabs(['Table', 'Solution'])
 
 with tab2:
